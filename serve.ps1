@@ -14,6 +14,7 @@ $mime = @{
   '.js'   = 'application/javascript; charset=utf-8'
   '.mjs'  = 'application/javascript; charset=utf-8'
   '.json' = 'application/json; charset=utf-8'
+  '.xml'  = 'application/xml; charset=utf-8'
   '.jpg'  = 'image/jpeg'
   '.jpeg' = 'image/jpeg'
   '.png'  = 'image/png'
