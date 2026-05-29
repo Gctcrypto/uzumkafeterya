@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Üzüm Cafe — Delice · Kahve & Gözleme</title>
+<meta name="description" content="Üzüm Cafe — Delice'de yeşillikler içinde, ışıl ışıl 100 m²'lik bir mola. Taze çekilmiş kahve ve el açması gözleme." />
+<!-- Fonts served locally from ./fonts (no external CDN needed) -->
+<link href="./fonts/fonts.css" rel="stylesheet" />
+<style>
+  :root{
+    --grape-deep:#241126;
+    --grape:#5e2658;
+    --grape-soft:#8a4f86;
+    --leaf:#4f7d56;
+    --leaf-deep:#2c4a32;
+    --leaf-light:#9cc09f;
+    --gold:#c8a45c;
+    --gold-soft:#e3cd97;
+    --cream:#f6f0e4;
+    --cream-2:#ece2cd;
+    --ink:#2a1c2b;
+    --nav-h:78px;
+    --type-display:clamp(48px,8vw,120px);
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--ink);
+    background:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,p{margin:0;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  .serif{font-family:'Cormorant Garamond',serif;}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:14px;
+    letter-spacing:.34em;text-transform:uppercase;font-weight:600;color:var(--leaf);margin-bottom:22px;}
+  .eyebrow .dash{width:40px;height:2px;background:var(--gold);display:block;}
+  .sec-title{font-family:'Cormorant Garamond',serif;font-weight:600;
+    font-size:clamp(38px,5.2vw,72px);line-height:1.02;letter-spacing:.5px;color:var(--grape-deep);}
+
+  /* ---------- NAV ---------- */
+  .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;
+    display:flex;align-items:center;transition:background .4s,box-shadow .4s,backdrop-filter .4s;}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%;}
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:28px;letter-spacing:.5px;color:#fff;transition:color .4s;}
+  .brand em{font-style:italic;font-weight:500;color:var(--gold-soft);}
+  .brand .mk{width:30px;height:38px;color:var(--gold-soft);transition:color .4s;}
+  .navlinks{display:flex;align-items:center;gap:38px;}
+  .navlinks a{font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+    color:rgba(255,255,255,.92);position:relative;padding:6px 0;transition:color .3s;}
+  .navlinks a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;
+    background:var(--gold);transition:width .3s;}
+  .navlinks a:hover{color:#fff;}
+  .navlinks a:hover::after{width:100%;}
+  .nav-cta{border:1.5px solid rgba(255,255,255,.5);border-radius:999px;padding:9px 22px !important;
+    transition:background .3s,border-color .3s,color .3s !important;}
+  .nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--grape-deep) !important;}
+  .nav-cta::after{display:none;}
+  .burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px;}
+  .burger span{width:24px;height:2px;background:#fff;display:block;transition:background .4s;}
+
+  .nav.solid{background:rgba(246,240,228,.92);backdrop-filter:blur(14px);
+    box-shadow:0 8px 30px -18px rgba(36,17,38,.5);}
+  .nav.solid .brand,.nav.solid .brand .mk{color:var(--grape-deep);}
+  .nav.solid .brand em{color:var(--grape);}
+  .nav.solid .navlinks a{color:var(--ink);}
+  .nav.solid .nav-cta{border-color:var(--grape);}
+  .nav.solid .nav-cta:hover{color:#fff !important;border-color:var(--grape);background:var(--grape);}
+  .nav.solid .burger span{background:var(--grape-deep);}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;
+    color:#fff;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;z-index:0;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);
+    animation:kenburns 18s ease-out forwards;}
+  @keyframes kenburns{to{transform:scale(1);}}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(36,17,38,.62) 0%,rgba(36,17,38,.34) 38%,rgba(36,17,38,.78) 100%);}
+  .hero .wrap{position:relative;z-index:2;}
+  .hero-mark{width:64px;height:80px;color:var(--gold-soft);margin-bottom:26px;
+    animation:floatup 1s .1s both;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:.9;
+    font-size:var(--type-display);letter-spacing:1px;text-shadow:0 4px 40px rgba(0,0,0,.3);
+    animation:floatup 1s .25s both;}
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--gold-soft);}
+  .hero-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,2.6vw,34px);
+    max-width:640px;margin-top:20px;color:#f3e6dc;animation:floatup 1s .4s both;}
+  .hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:18px;
+    font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf-light);
+    animation:floatup 1s .5s both;}
+  .hero-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);display:block;}
+  .hero-btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px;animation:floatup 1s .6s both;}
+  @keyframes floatup{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;padding:15px 30px;border-radius:999px;
+    cursor:pointer;transition:transform .25s,background .3s,box-shadow .3s,color .3s;border:1.5px solid transparent;}
+  .btn:hover{transform:translateY(-3px);}
+  .btn-gold{background:var(--gold);color:var(--grape-deep);box-shadow:0 14px 30px -14px rgba(200,164,92,.8);}
+  .btn-gold:hover{background:var(--gold-soft);}
+  .btn-ghost{border-color:rgba(255,255,255,.6);color:#fff;}
+  .btn-ghost:hover{background:#fff;color:var(--grape-deep);}
+  .scrollcue{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:2;
+    color:rgba(255,255,255,.7);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:8px;animation:bob 2.4s ease-in-out infinite;}
+  .scrollcue svg{width:18px;height:18px;}
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative;}
+  .pad{padding:clamp(80px,11vw,150px) 0;}
+  .bg-cream{background:radial-gradient(120% 100% at 80% 0%,#fbf6ea 0%,var(--cream) 55%,var(--cream-2) 100%);}
+  .bg-dark{background:
+      radial-gradient(110% 120% at 88% 8%,#3a1c3c 0%,rgba(58,28,60,0) 55%),
+      linear-gradient(160deg,#2a1430 0%,var(--grape-deep) 60%,#1d0f20 100%);color:var(--cream);}
+  .bg-dark .sec-title{color:#f6ecd8;}
+  .bg-dark .eyebrow{color:var(--leaf-light);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,6vw,90px);align-items:center;}
+  .about-copy p{font-size:19px;line-height:1.75;color:#5f4f5b;margin-top:22px;max-width:520px;}
+  .about-stats{display:flex;gap:40px;margin-top:38px;}
+  .stat .n{font-family:'Cormorant Garamond',serif;font-size:54px;line-height:1;color:var(--grape);font-weight:600;}
+  .stat .l{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf-deep);margin-top:6px;font-weight:600;}
+  .about-media{position:relative;}
+  .about-media .ph{border-radius:14px;overflow:hidden;aspect-ratio:4/5;
+    box-shadow:0 40px 70px -34px rgba(36,17,38,.6);}
+  .about-media .ph img{width:100%;height:100%;object-fit:cover;}
+  .about-media .frame{position:absolute;inset:-18px;border:1.5px solid var(--gold);border-radius:18px;z-index:-1;}
+  .about-badge{position:absolute;left:-26px;bottom:34px;background:var(--grape-deep);color:var(--cream);
+    border-radius:12px;padding:18px 24px;box-shadow:0 20px 40px -18px rgba(0,0,0,.5);display:flex;align-items:center;gap:14px;}
+  .about-badge .mk{width:28px;height:35px;color:var(--gold-soft);}
+  .about-badge b{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;}
+  .about-badge span{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf-light);}
+
+  /* ---------- MENU SECTIONS ---------- */
+  .menu-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,84px);align-items:center;}
+  .menu-grid.rev{grid-template-columns:1.15fr 1fr;}
+  .menu-media{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:5/6;
+    box-shadow:0 40px 70px -34px rgba(0,0,0,.5);}
+  .menu-media img{width:100%;height:100%;object-fit:cover;}
+  .menu-media image-slot{width:100%;height:100%;}
+  .menu-head{margin-bottom:36px;}
+  .menu-note{font-size:17px;line-height:1.7;margin-top:18px;max-width:480px;opacity:.82;}
+  .bg-dark .menu-note{color:#dcc8d6;}
+  .bg-cream .menu-note{color:#6b5b66;}
+  .mlist{display:grid;grid-template-columns:1fr 1fr;gap:26px 50px;margin-top:8px;}
+  .mrow{display:flex;flex-direction:column;gap:4px;}
+  .mrow .top{display:flex;align-items:baseline;gap:12px;}
+  .mrow .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;line-height:1;white-space:nowrap;}
+  .mrow .ld{flex:1;border-bottom:1.5px dotted;opacity:.45;transform:translateY(-6px);}
+  .mrow .price{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;}
+  .mrow .desc{font-size:14px;letter-spacing:.02em;opacity:.7;}
+  .bg-dark .mrow .name{color:#f3e8d4;}.bg-dark .mrow .price{color:var(--gold-soft);}
+  .bg-dark .mrow .ld{border-color:var(--gold);}.bg-dark .mrow .desc{color:#c4b0c0;}
+  .bg-cream .mrow .name{color:var(--grape);}.bg-cream .mrow .price{color:var(--leaf-deep);}
+  .bg-cream .mrow .ld{border-color:var(--grape-soft);}.bg-cream .mrow .desc{color:#7a6a64;}
+
+  /* ---------- GALLERY ---------- */
+  .gal-head{text-align:center;margin-bottom:54px;}
+  .gal-head .eyebrow{justify-content:center;}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;}
+  .gcell{overflow:hidden;border-radius:12px;position:relative;}
+  .gcell img,.gcell image-slot{width:100%;height:100%;object-fit:cover;}
+  .gcell img{transition:transform .9s ease;}
+  .gcell:hover img{transform:scale(1.07);}
+  .span2c{grid-column:span 2;}.span2r{grid-row:span 2;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,6vw,80px);align-items:stretch;}
+  .info-list{margin-top:34px;display:flex;flex-direction:column;gap:26px;}
+  .info{display:flex;gap:18px;align-items:flex-start;}
+  .info .ic{width:46px;height:46px;flex:none;border-radius:50%;border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;color:var(--gold-soft);}
+  .info .ic svg{width:20px;height:20px;}
+  .info .k{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf-light);font-weight:600;margin-bottom:4px;}
+  .info .v{font-size:19px;color:#f3e8d4;font-family:'Cormorant Garamond',serif;font-weight:500;}
+  .info .v a:hover{color:var(--gold-soft);}
+  .map{border-radius:14px;overflow:hidden;min-height:380px;border:1px solid rgba(200,164,92,.4);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.6);}
+  .map iframe{width:100%;height:100%;min-height:380px;border:0;filter:grayscale(.2) contrast(1.05);}
+  .contact-cta{margin-top:34px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#1b0d1d;color:#c9b4c4;padding:60px 0 40px;}
+  .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:center;
+    padding-bottom:34px;border-bottom:1px solid rgba(200,164,92,.22);}
+  .foot-brand{display:flex;align-items:center;gap:12px;font-family:'Cormorant Garamond',serif;
+    font-size:30px;color:#f6ecd8;font-weight:600;}
+  .foot-brand em{font-style:italic;color:var(--gold-soft);}
+  .foot-brand .mk{width:30px;height:38px;color:var(--gold-soft);}
+  .foot-links{display:flex;gap:30px;flex-wrap:wrap;}
+  .foot-links a{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#c9b4c4;transition:color .3s;}
+  .foot-links a:hover{color:var(--gold-soft);}
+  .foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;
+    padding-top:26px;font-size:13px;letter-spacing:.06em;color:#8f7a8a;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+  image-slot{border-radius:12px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:960px){
+    .navlinks{position:fixed;inset:var(--nav-h) 0 auto 0;background:rgba(33,17,35,.97);
+      backdrop-filter:blur(14px);flex-direction:column;gap:0;padding:14px 0;
+      transform:translateY(-120%);transition:transform .4s;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);}
+    .navlinks.open{transform:none;}
+    .navlinks a{color:#fff !important;padding:16px 40px;width:100%;}
+    .nav-cta{margin:10px 40px;text-align:center;justify-content:center;}
+    .burger{display:flex;}
+    .about-grid,.menu-grid,.menu-grid.rev,.contact-grid{grid-template-columns:1fr;}
+    .menu-media,.about-media .ph{max-width:520px;margin:0 auto;}
+    .about-badge{left:10px;}
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px;}
+    .mlist{grid-template-columns:1fr;}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 22px;}
+    .hero-btns{flex-direction:column;align-items:flex-start;}
+    .gallery{grid-template-columns:1fr;}
+    .span2c{grid-column:auto;}
+  }
+</style>
+</head>
+<body>
+  <!-- brand mark symbol -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="grapemark" viewBox="0 0 64 84">
+      <path class="gm-leaf" fill="currentColor" d="M32 4 C23 11,21 21,32 27 C43 21,41 11,32 4 Z" opacity=".9"/>
+      <path d="M32 26 q-1 4 0 8" stroke="currentColor" stroke-width="1.6" fill="none" opacity=".7"/>
+      <circle cx="19" cy="42" r="7" fill="currentColor"/>
+      <circle cx="32" cy="42" r="7" fill="currentColor"/>
+      <circle cx="45" cy="42" r="7" fill="currentColor"/>
+      <circle cx="25.5" cy="55" r="7" fill="currentColor"/>
+      <circle cx="38.5" cy="55" r="7" fill="currentColor"/>
+      <circle cx="32" cy="68" r="7" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="#hero">
+        <svg class="mk" viewBox="0 0 64 84" aria-hidden="true"><use href="#grapemark"/></svg>
+        <span>Üzüm <em>Cafe</em></span>
+      </a>
+      <div class="navlinks" id="navlinks">
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="#kahve">Kahve</a>
+        <a href="#gozleme">Gözleme</a>
+        <a href="#galeri">Galeri</a>
+        <a class="nav-cta" href="#iletisim">İletişim</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="hero" data-screen-label="Hero">
+    <div class="hero-bg">
+      <img src="./images/hero.jpg" alt="Üzüm Cafe — yeşillikler içinde aydınlık iç mekan" />
+    </div>
+    <div class="wrap">
+      <svg class="hero-mark" viewBox="0 0 64 84" aria-hidden="true"><use href="#grapemark"/></svg>
+      <h1>Üzüm <em>Cafe</em></h1>
+      <p class="hero-tag">Yeşilliklerin içinde, ışıl ışıl bir mola — taze kahve ve el açması gözlemenin buluştuğu yer.</p>
+      <div class="hero-meta">
+        <span>Delice · Kırıkkale</span><span class="dot"></span>
+        <span>100 m²</span><span class="dot"></span>
+        <span>Her gün 08:00–22:00</span>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-gold" href="#kahve">Menüyü Keşfet</a>
+        <a class="btn btn-ghost" href="#iletisim">Bizi Ziyaret Et</a>
+      </div>
+    </div>
+    <div class="scrollcue">
+      <span>Kaydır</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </header>
+
+  <!-- ===================== HAKKIMIZDA ===================== -->
+  <section class="pad bg-cream" id="hakkimizda" data-screen-label="Hakkımızda">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow"><span class="dash"></span>Hakkımızda</span>
+        <h2 class="sec-title">Yeşilin içinde<br/>bir nefes</h2>
+        <p>Üzüm Cafe, Delice'nin kalbinde 100 m²'lik aydınlık ve modern bir mekân. Bol ışık, yemyeşil bitkiler ve sıcak bir atmosferle; günün her saati huzurla oturabileceğiniz, kahvenizi yudumlayıp el açması gözlemenizin keyfini çıkarabileceğiniz bir durak.</p>
+        <p>Taze çekilmiş çekirdekler, günlük açılan hamur ve içten bir misafirperverlik — sade ama özenli bir lezzet anlayışı.</p>
+        <div class="about-stats">
+          <div class="stat"><div class="n">100</div><div class="l">m² Ferah Alan</div></div>
+          <div class="stat"><div class="n">08–22</div><div class="l">Her Gün Açık</div></div>
+        </div>
+      </div>
+      <div class="about-media reveal d2">
+        <div class="frame"></div>
+        <div class="ph"><img src="./images/about.jpg" alt="Aydınlık, bitkilerle bezeli kafe atmosferi" /></div>
+        <div class="about-badge">
+          <svg class="mk" viewBox="0 0 64 84" aria-hidden="true"><use href="#grapemark"/></svg>
+          <div><b>Üzüm Cafe</b><span>Delice · Kırıkkale</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KAHVE ===================== -->
+  <section class="pad bg-dark" id="kahve" data-screen-label="Kahve">
+    <div class="wrap menu-grid">
+      <div class="menu-media reveal">
+        <img src="./images/kahve.jpg" alt="Türk kahvesi" />
+      </div>
+      <div class="reveal d2">
+        <div class="menu-head">
+          <span class="eyebrow"><span class="dash"></span>Taze Çekilmiş · Barista Eli</span>
+          <h2 class="sec-title">Kahve</h2>
+          <p class="menu-note">Her fincan, taze çekilmiş çekirdeklerden özenle hazırlanır. Sıcak ya da buzlu — keyfinize göre.</p>
+        </div>
+        <div class="mlist">
+          <div class="mrow"><div class="top"><span class="name">Türk Kahvesi</span><span class="ld"></span><span class="price">₺45</span></div><span class="desc">Közde, bol köpüklü</span></div>
+          <div class="mrow"><div class="top"><span class="name">Espresso</span><span class="ld"></span><span class="price">₺40</span></div><span class="desc">Tek / double shot</span></div>
+          <div class="mrow"><div class="top"><span class="name">Cappuccino</span><span class="ld"></span><span class="price">₺55</span></div><span class="desc">İpeksi süt köpüğü</span></div>
+          <div class="mrow"><div class="top"><span class="name">Flat White</span><span class="ld"></span><span class="price">₺60</span></div><span class="desc">Yoğun ve kadifemsi</span></div>
+          <div class="mrow"><div class="top"><span class="name">Latte</span><span class="ld"></span><span class="price">₺60</span></div><span class="desc">Sıcak veya buzlu</span></div>
+          <div class="mrow"><div class="top"><span class="name">Soğuk Demleme</span><span class="ld"></span><span class="price">₺65</span></div><span class="desc">12 saat demlenmiş</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GÖZLEME ===================== -->
+  <section class="pad bg-cream" id="gozleme" data-screen-label="Gözleme">
+    <div class="wrap menu-grid rev">
+      <div class="reveal">
+        <div class="menu-head">
+          <span class="eyebrow"><span class="dash"></span>Köy Usulü · El Açması</span>
+          <h2 class="sec-title">Gözleme</h2>
+          <p class="menu-note">Günlük açılan ince hamur, taş sacda pişer. Yanında ayran ile tam bir Anadolu sofrası.</p>
+        </div>
+        <div class="mlist">
+          <div class="mrow"><div class="top"><span class="name">Peynirli</span><span class="ld"></span><span class="price">₺70</span></div><span class="desc">Tam yağlı beyaz peynir</span></div>
+          <div class="mrow"><div class="top"><span class="name">Ispanaklı</span><span class="ld"></span><span class="price">₺70</span></div><span class="desc">Taze ıspanak</span></div>
+          <div class="mrow"><div class="top"><span class="name">Patatesli</span><span class="ld"></span><span class="price">₺65</span></div><span class="desc">Baharatlı patates</span></div>
+          <div class="mrow"><div class="top"><span class="name">Kıymalı</span><span class="ld"></span><span class="price">₺85</span></div><span class="desc">El kıyması, soğanlı</span></div>
+          <div class="mrow"><div class="top"><span class="name">Kaşarlı–Sucuklu</span><span class="ld"></span><span class="price">₺90</span></div><span class="desc">Bol kaşar, dilim sucuk</span></div>
+          <div class="mrow"><div class="top"><span class="name">Ballı Kaymaklı</span><span class="ld"></span><span class="price">₺80</span></div><span class="desc">Tatlı seçenek</span></div>
+        </div>
+      </div>
+      <div class="menu-media reveal d2">
+        <image-slot id="uzum-gozleme" shape="rounded" radius="14" src="./images/gozleme.jpg" placeholder="Gözleme fotoğrafınızı buraya bırakın"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERİ ===================== -->
+  <section class="pad bg-dark" id="galeri" data-screen-label="Galeri">
+    <div class="wrap">
+      <div class="gal-head reveal">
+        <span class="eyebrow"><span class="dash"></span>Üzüm Cafe'den Kareler</span>
+        <h2 class="sec-title">Galeri</h2>
+      </div>
+      <div class="gallery reveal d2">
+        <div class="gcell span2c span2r"><img src="./images/hero.jpg" alt="Yeşillikli kafe iç mekanı" /></div>
+        <div class="gcell"><img src="./images/gallery-latte.jpg" alt="Latte" /></div>
+        <div class="gcell"><img src="./images/gallery-espresso.jpg" alt="Espresso" /></div>
+        <div class="gcell span2c"><img src="./images/gallery-tezgah.jpg" alt="Kafe tezgahı" /></div>
+        <div class="gcell"><img src="./images/gallery-soguk.jpg" alt="Soğuk kahve" /></div>
+        <div class="gcell"><image-slot id="uzum-gal1" shape="rounded" radius="12" src="./images/gallery-cafe.jpg" placeholder="Kendi fotoğrafınız"></image-slot></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== İLETİŞİM ===================== -->
+  <section class="pad bg-dark" id="iletisim" data-screen-label="İletişim" style="padding-top:0;">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <span class="eyebrow"><span class="dash"></span>Bize Ulaşın</span>
+        <h2 class="sec-title">Ziyaret Edin</h2>
+        <div class="info-list">
+          <div class="info">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <div><div class="k">Adres</div><div class="v">Cumhuriyet Mah., Delice / Kırıkkale</div></div>
+          </div>
+          <div class="info">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg></div>
+            <div><div class="k">Telefon</div><div class="v"><a href="tel:+900000000000">0 (3XX) XXX XX XX</a></div></div>
+          </div>
+          <div class="info">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+            <div><div class="k">Sosyal</div><div class="v"><a href="https://instagram.com" target="_blank" rel="noopener">@uzumcafe</a></div></div>
+          </div>
+          <div class="info">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><div class="k">Çalışma Saatleri</div><div class="v">Her gün 08:00 – 22:00</div></div>
+          </div>
+        </div>
+        <div class="contact-cta">
+          <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&query=Delice+Kırıkkale" target="_blank" rel="noopener">Yol Tarifi Al</a>
+        </div>
+      </div>
+      <div class="map reveal d2">
+        <iframe title="Üzüm Cafe konum" loading="lazy" src="https://www.google.com/maps?q=Delice%20Kırıkkale&z=14&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <svg class="mk" viewBox="0 0 64 84" aria-hidden="true"><use href="#grapemark"/></svg>
+          <span>Üzüm <em>Cafe</em></span>
+        </div>
+        <div class="foot-links">
+          <a href="#hakkimizda">Hakkımızda</a>
+          <a href="#kahve">Kahve</a>
+          <a href="#gozleme">Gözleme</a>
+          <a href="#galeri">Galeri</a>
+          <a href="#iletisim">İletişim</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Üzüm Cafe · Delice, Kırıkkale</span>
+        <span>Yeşilliklerin içinde · Kahve & Gözleme</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="image-slot.js"></script>
+  <script>
+    // nav solid on scroll
+    var nav = document.getElementById('nav');
+    function onScroll(){ nav.classList.toggle('solid', window.scrollY > 60); }
+    window.addEventListener('scroll', onScroll); onScroll();
+
+    // mobile menu
+    var burger = document.getElementById('burger');
+    var navlinks = document.getElementById('navlinks');
+    burger.addEventListener('click', function(){ navlinks.classList.toggle('open'); });
+    navlinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navlinks.classList.remove('open'); });
+    });
+
+    // reveal on scroll
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:.16 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  </script>
+</body>
+</html>

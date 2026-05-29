@@ -1,0 +1,9 @@
+# Dev-only files — keep them out of the production image
+.git
+.gitignore
+serve.ps1
+preview.png
+preview2.png
+*.output
+*.md
+.image-slots.state.json
